@@ -1,0 +1,7 @@
+name: probe
+on: [push, workflow_dispatch]
+jobs:
+  probe:
+    runs-on: macos-13
+    steps:
+      - run: sw_vers && xcrun swiftc --version
