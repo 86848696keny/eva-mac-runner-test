@@ -2,6 +2,10 @@ name: probe
 on: [push, workflow_dispatch]
 jobs:
   probe:
-    runs-on: macos-13
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [macos-13, macos-14, macos-15]
+    runs-on: ${{ matrix.os }}
     steps:
-      - run: sw_vers && xcrun swiftc --version
+      - run: sw_vers && uname -m && xcrun swiftc --version
